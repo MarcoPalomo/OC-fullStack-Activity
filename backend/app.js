@@ -4,7 +4,7 @@ const Product = require('./models/product');
 //partie pour attaquer mongodb avec mongoose
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://lpmb45:yjrfZGVWCa0NZyr5@cluster0.sadhlkw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://', //write your own
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion réussie !'))
