@@ -1,8 +1,9 @@
 # Go Fullstack FR Quiz #
 ## Installation ##
-Clone this repo, and run `npm install` from within the project directory.
-## Using the app ##
-Run `npm start` from within the project directory.
+Just clone this repo, and run `npm install` from within the project directory.
+
+## Run the app ##
+Just run `npm start` from within the project directory.
 
 Choose the port your API is running on, and click TEST ROUTES to test your API.
 ## Schema ##
@@ -14,6 +15,9 @@ mongoose.Schema({
   inStock: { type: Boolean, required: true }
 })
 ```
+
+It will gives you an animal type !
+
 ## Required endpoints ##
 The frontend app requires the following endpoints with the correct behavior for all tests to pass:
 * GET `/api/products`
