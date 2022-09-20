@@ -1,10 +1,12 @@
 const express = require('express');
 const Product = require('./models/product');
+require('dotenv').config();
 
 //partie pour attaquer mongodb avec mongoose
 const mongoose = require('mongoose');
+const my_db_key = process.env.DB_KEY
 
-mongoose.connect('mongodb+srv://', //write your own
+mongoose.connect('mongodb+srv:${my_db_key}',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion réussie !'))
@@ -37,7 +39,8 @@ product.get('/api/products/:id', (req, res) => {
 
 product.post('/api/products', (req, res) => {
   delete req.body._id;
-  const products = [
+  const products = new Product;
+  Product = [
       {
         name: 'cuillere',
         description: 'Les infos de mon premier objet',
@@ -46,8 +49,6 @@ product.post('/api/products', (req, res) => {
       },
     ];
   res.status(201).json({ product: Product });
-  //const products = new Product({
-  //...req.body
 });
 
 product.put('/api/products/:id', (req, res) => {
