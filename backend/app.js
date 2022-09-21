@@ -2,20 +2,18 @@ const express = require('express');
 const Product = require('./models/product');
 require('dotenv').config();
 
+const product = express();
+product.use(express.json());
+
 //partie pour attaquer mongodb avec mongoose
 const mongoose = require('mongoose');
-const my_db_key = process.env.DB_KEY
 
-mongoose.connect('mongodb+srv:${my_db_key}',
+mongoose.connect('mongodb+srv://'+ process.env.DB_KEY,
+
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion réussie !'))
   .catch(() => console.log('Echec connexion.'));
-
-
-const product = express();
-
-product.use(express.json());
 
 //CORS
 product.use((req, res, next) => {
