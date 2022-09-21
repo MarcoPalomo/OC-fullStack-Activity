@@ -3,13 +3,15 @@ const Product = require('./models/product');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-product = express()
-product.use(express.json())
+/*
+product.save()
+.then(product => ... ... .json({ product }))
+.catch(error => ... ...)
+*/
 
 //partie pour attaquer mongodb avec mongoose
 const mongoose = require('mongoose');
-const product = require('./models/product');
-console.log(process.env.DB_KEY);
+//--> console.log(process.env.DB_KEY);
 mongoose.connect('mongodb+srv://'+ process.env.DB_KEY,
 
   { useNewUrlParser: true,
@@ -17,8 +19,9 @@ mongoose.connect('mongodb+srv://'+ process.env.DB_KEY,
   .then(() => console.log('Connexion réussie !'))
   .catch(() => console.log('Echec connexion.'));
 
-product.use(bodyParser.urlencoded({ extended: false }))
-product.use(bodyParser.json())
+let product = express()
+
+product.use(express.json())
 
 //CORS
 product.use((req, res, next) => {
@@ -28,8 +31,10 @@ product.use((req, res, next) => {
   next();
 });
 
+//demander à mongoose d'afficher le schema de product
+
 product.get('/api/products', (req, res) => {
-    products.find({ _id: req.params.id })
+    product.findAll({ _id: req.params.id })
       .then(() => res.status(201).json({ products: Product[0] }))
       .catch(error => res.status(400).json({ error }));
 });
